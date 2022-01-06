@@ -78,39 +78,37 @@ frida-ps -U -a -i
 
 ```javascript
 Java.perform(function() {
-		console.log("[ * ] Overriding functions");
-	 
-		const System = Java.use("java.lang.System");
-		const sysMyFunction = System.myFunction;
-	 
-		sysMyFunction.implementation = function() {
-			console.log("Hooking myFunction");
-			const ret = sysMyFunction.call();
-			console.log("Return value: " + ret);
-			return ret;
-		}
-	}
-)
+    console.log("[ * ] Overriding functions");
+    
+    const System = Java.use("java.lang.System");
+    const sysMyFunction = System.myFunction;
+ 
+    sysMyFunction.implementation = function() {
+        console.log("Hooking myFunction");
+        const ret = sysMyFunction.call();
+        console.log("Return value: " + ret);
+        return ret;
+    }
+});
 ```
 
 #### Hooking an overloaded function
 
 ```javascript
-	Java.perform(function() {
-		console.log("[ * ] Overriding functions");
-	 
-		const MyClass = Java.use("com.appsomething.MyClass");
-		const targetFunction = MyClass.target.overload("int", "java.lang.String");
-	 
-		targetFunction.implementation = function(val_i, val_s) {
-			console.log("Hooking target");
-			console.log("Called with: " + val_i + ", " + val_s);
-			const ret = targetFunction.call(this, val_i, val_s);
-			console.log("Return value: " + ret);
-			return ret;
-		}
-	}
-)
+Java.perform(function() {
+    console.log("[ * ] Overriding functions");
+ 
+    const MyClass = Java.use("com.appsomething.MyClass");
+    const targetFunction = MyClass.target.overload("int", "java.lang.String");
+ 
+    targetFunction.implementation = function(val_i, val_s) {
+        console.log("Hooking target");
+        console.log("Called with: " + val_i + ", " + val_s);
+        const ret = targetFunction.call(this, val_i, val_s);
+        console.log("Return value: " + ret);
+        return ret;
+    }
+});
 ```
 
 > Here are some Frida base types: "int", "float", "[B" (byte array).
