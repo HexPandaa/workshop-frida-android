@@ -32,6 +32,34 @@ Download jadx-gui from [here](https://github.com/skylot/jadx/releases).
 
 ### Recon
 
+#### Start Frida on the emulator
+
+Download the Frida server from [here](https://github.com/frida/frida/releases)
+
+Decompress the server and push it to the emulator
+
+```bash
+unxz ./frida-server-*-android-x86.xz
+adb push ./frida-server-*-android-x86 /data/local/tmp
+```
+
+Start the server as root on the emulator
+```bash
+adb shell  # We are now in a shell on the emulator
+su
+cd /data/local/tmp
+chmod +x frida-server*
+./frida-server*
+```
+Or  alternatively to start the server afterward
+```bash
+adb root  # adb commands will now be executed as root
+adb shell "/data/local/tmp/frida-server*"  # You may add ' &' at the end to run it in the background
+```
+
+
+
+
 #### List packages installed on the device
 
 ```bash
@@ -87,8 +115,15 @@ Java.perform(function() {
 
 > Here are some Frida base types: "int", "float", "[B" (byte array).
 
+#### Starting the script
+
+```bash
+frida -U --no-pause -l hook.js -f "package.name"
+```
+
 ## Resources
 
 - [Frida official Android example](https://frida.re/docs/examples/android/)
 - https://book.hacktricks.xyz/mobile-apps-pentesting/android-app-pentesting/frida-tutorial/frida-tutorial-1
 - https://braincoke.fr/blog/2021/03/android-reverse-engineering-for-beginners-frida/#static-analysis-reminder
+- How Frida works
