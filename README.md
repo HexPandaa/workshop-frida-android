@@ -126,4 +126,4 @@ frida -U --no-pause -l hook.js -f "package.name"
 - [Frida official Android example](https://frida.re/docs/examples/android/)
 - https://book.hacktricks.xyz/mobile-apps-pentesting/android-app-pentesting/frida-tutorial/frida-tutorial-1
 - https://braincoke.fr/blog/2021/03/android-reverse-engineering-for-beginners-frida/#static-analysis-reminder
-- How Frida works
+- [How Frida works](https://frida.re/slides/osdc-2015-the-engineering-behind-the-reverse-engineering.pdf)
