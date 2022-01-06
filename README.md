@@ -8,6 +8,14 @@ Install Android Studio and create an emulator running Android 7.1.1 x86, without
 
 ### Frida
 
+Create a venv.
+
+```bash
+python3 -m venv venv
+cd venv
+source ./venv/bin/activate
+```
+
 Install Frida through pip. 
 
 ```bash
